@@ -7,13 +7,12 @@ import java.time.Instant
 import java.util.*
 
 @Entity
-@Table(name = "tbl_product_categories")
-data class ProductCategory (
+@Table(name = "tbl_transaction_types")
+data class TransactionType(
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     val id: String,
-    val name: String,
-    val description: String,
+    val type: String,
 
     @CreationTimestamp
     @Column(name = "created_at")
@@ -24,22 +23,18 @@ data class ProductCategory (
     val updatedAt: Instant
 ) {
     constructor(
-        name: String,
-        description: String,
+        type: String
     ): this(
         UUID.randomUUID().toString(),
-        name,
-        description,
+        type,
         Instant.now(),
         Instant.now()
     )
 
-    constructor() : this(
-        "",
+    constructor(): this(
         "",
         "",
         Instant.now(),
         Instant.now()
     )
-
 }

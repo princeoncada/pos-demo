@@ -2,10 +2,11 @@ package repository
 
 import jakarta.persistence.EntityManager
 import model.ProductCategory
+import repository.base.EntityRepositoryImpl
 
 class ProductCategoryRepository(
     entityManager: EntityManager
-): GenericRepositoryImpl<ProductCategory, String>(entityManager) {
+): EntityRepositoryImpl<ProductCategory, String>(entityManager) {
     override fun getEntityClass(): Class<ProductCategory> {
         return ProductCategory::class.java
     }

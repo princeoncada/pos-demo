@@ -4,16 +4,14 @@ import jakarta.persistence.*
 import org.hibernate.annotations.CreationTimestamp
 import org.hibernate.annotations.UpdateTimestamp
 import java.time.Instant
-import java.util.*
 
 @Entity
-@Table(name = "tbl_product_categories")
-data class ProductCategory (
+@Table(name = "tbl_roles")
+data class Role(
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     val id: String,
     val name: String,
-    val description: String,
 
     @CreationTimestamp
     @Column(name = "created_at")
@@ -25,11 +23,9 @@ data class ProductCategory (
 ) {
     constructor(
         name: String,
-        description: String,
     ): this(
-        UUID.randomUUID().toString(),
+        java.util.UUID.randomUUID().toString(),
         name,
-        description,
         Instant.now(),
         Instant.now()
     )
@@ -37,9 +33,7 @@ data class ProductCategory (
     constructor() : this(
         "",
         "",
-        "",
         Instant.now(),
         Instant.now()
     )
-
 }

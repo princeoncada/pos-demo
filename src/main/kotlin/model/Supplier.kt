@@ -7,39 +7,37 @@ import java.time.Instant
 import java.util.*
 
 @Entity
-@Table(name = "tbl_product_categories")
-data class ProductCategory (
+@Table(name = "tbl_suppliers")
+data class Supplier(
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     val id: String,
-    val name: String,
-    val description: String,
+
+    @OneToOne
+    @JoinColumn(name = "person_id", referencedColumnName = "id", nullable = false)
+    val person: Person,
 
     @CreationTimestamp
-    @Column(name = "created_at")
+    @Column(name = "created_at", nullable = false)
     val createdAt: Instant,
 
     @UpdateTimestamp
-    @Column(name = "updated_at")
+    @Column(name = "updated_at", nullable = false)
     val updatedAt: Instant
 ) {
     constructor(
-        name: String,
-        description: String,
+        person: Person
     ): this(
         UUID.randomUUID().toString(),
-        name,
-        description,
+        person,
         Instant.now(),
         Instant.now()
     )
 
-    constructor() : this(
+    constructor(): this(
         "",
-        "",
-        "",
+        Person(),
         Instant.now(),
         Instant.now()
     )
-
 }

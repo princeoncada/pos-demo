@@ -5,7 +5,19 @@
              version="2.1">
     <persistence-unit name="MyAppPersistenceUnit">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+        <!-- Define the entities managed by JPA -->
+        <class>model.Person</class>
         <class>model.ProductCategory</class>
+        <class>model.Role</class>
+        <class>model.User</class>
+        <class>model.Supplier</class>
+        <class>model.Product</class>
+        <class>model.Sale</class>
+        <class>model.SaleItem</class>
+        <class>model.TransactionType</class>
+        <class>model.Transaction</class>
+
         <!-- Configure the database connection -->
         <properties>
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:8000/db_baste"/>
